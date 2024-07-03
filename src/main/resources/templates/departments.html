@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -39,7 +39,7 @@
         tr:hover {
             background-color: #f1f1f1;
         }
-        button {
+        a.button {
             background-color: #4CAF50;
             color: white;
             border: none;
@@ -52,7 +52,7 @@
             cursor: pointer;
             border-radius: 4px;
         }
-        button:hover {
+        a.button:hover {
             background-color: #45a049;
         }
     </style>
@@ -71,25 +71,18 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td>Human Resources</td>
-            <td><button>Edit</button></td>
-            <td><button>Delete</button></td>
-        </tr>
-        <tr>
-            <td>Finance</td>
-            <td><button>Edit</button></td>
-            <td><button>Delete</button></td>
-        </tr>
-        <tr>
-            <td>IT</td>
-            <td><button>Edit</button></td>
-            <td><button>Delete</button></td>
-        </tr>
-        <tr>
-            <td>Marketing</td>
-            <td><button>Edit</button></td>
-            <td><button>Delete</button></td>
+        <!-- Iterate over each department -->
+        <tr th:each="department : ${departments}">
+            <!-- Display department name -->
+            <td th:text="${department.name}">Department Name</td>
+            <!-- Edit link -->
+            <td>
+                <a th:href="@{/edit-department/{id}(id=${department.id})}" class="button">Edit</a>
+            </td>
+            <!-- Delete link (you can add functionality as per your requirement) -->
+            <td>
+                <a th:href="@{/delete-department/{id}(id=${department.id})}" class="button">Delete</a>
+            </td>
         </tr>
         </tbody>
     </table>
