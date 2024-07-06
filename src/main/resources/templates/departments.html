@@ -20,6 +20,9 @@
         .container {
             padding: 20px;
         }
+        .actions {
+            margin-bottom: 20px;
+        }
         table {
             width: 100%;
             border-collapse: collapse;
@@ -62,11 +65,16 @@
     <h1>Departments</h1>
 </header>
 <div class="container">
+    <div class="actions">
+        <!-- Add Department button -->
+        <a th:href="@{/add-department}" class="button">Add Department</a>
+    </div>
     <table>
         <thead>
         <tr>
             <th>Name</th>
             <th>Edit</th>
+            <th>Improve</th>
             <th>Delete</th>
         </tr>
         </thead>
@@ -79,7 +87,11 @@
             <td>
                 <a th:href="@{/edit-department/{id}(id=${department.id})}" class="button">Edit</a>
             </td>
-            <!-- Delete link (you can add functionality as per your requirement) -->
+            <!-- Improve link -->
+            <td>
+                <a th:href="@{/improve-department/{id}(id=${department.id})}" class="button">Improve</a>
+            </td>
+            <!-- Delete link -->
             <td>
                 <a th:href="@{/delete-department/{id}(id=${department.id})}" class="button">Delete</a>
             </td>

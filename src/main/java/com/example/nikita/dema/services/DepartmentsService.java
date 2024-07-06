@@ -11,9 +11,17 @@ public class DepartmentsService {
     public DepartmentsService() {
         departments.add(new Department(1, "First Department", "First Department description"));
         departments.add(new Department(2, "Second Department", "Second Department description"));
+        departments.add(new Department(3, "Third Department", "Second Department description"));
     }
 
     public void addDepartment(Department department) {
+        int maxId = 0;
+        for (Department department1 : departments) {
+            if (department1.getId() > maxId) {
+                maxId = department1.getId();
+            }
+        }
+        department.setId(maxId + 1);
         departments.add(department);
     }
 
@@ -40,5 +48,14 @@ public class DepartmentsService {
                departmentInList.setDescription(department.getDescription());
             }
         }
+    }
+    public void deleteDepartment(int id){
+        Department department = null;
+        for (Department departmentInList : departments) {
+            if (departmentInList.getId() == id) {
+                department = departmentInList;
+            }
+        }
+        departments.remove(department);
     }
 }
