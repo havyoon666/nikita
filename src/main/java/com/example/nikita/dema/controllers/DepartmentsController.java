@@ -28,6 +28,7 @@ public class DepartmentsController {
         return "departments";
     }
 
+
     @GetMapping("/edit-department/{id}")
     public String goToEditDepartment(@PathVariable String id, Model model) {
         model.addAttribute("department", departmentsService.getDepartmentById(id));
@@ -39,11 +40,7 @@ public class DepartmentsController {
         model.addAttribute("department", new Department());
         return "addDepartment";
     }
-    @GetMapping("/improve-department/{id}")
-    public String goToImproveDepartment(@PathVariable String id, Model model) {
-        model.addAttribute("department", departmentsService.getDepartmentById(id));
-        return "improveDepartment";
-    }
+
 
     @PostMapping("/save-department")
     public String updateDepartment(Department department, Model model) {
@@ -53,6 +50,7 @@ public class DepartmentsController {
         }
         else{
             departmentsService.updateDepartment(department);
+
 
         }
 

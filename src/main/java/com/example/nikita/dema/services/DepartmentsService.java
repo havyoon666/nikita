@@ -11,7 +11,7 @@ public class DepartmentsService {
     public DepartmentsService() {
         departments.add(new Department(1, "First Department", "First Department description"));
         departments.add(new Department(2, "Second Department", "Second Department description"));
-        departments.add(new Department(3, "Third Department", "Second Department description"));
+        departments.add(new Department(3, "Third Department", "Third Department description"));
     }
 
     public void addDepartment(Department department) {
@@ -49,6 +49,7 @@ public class DepartmentsService {
             }
         }
     }
+
     public void deleteDepartment(int id){
         Department department = null;
         for (Department departmentInList : departments) {

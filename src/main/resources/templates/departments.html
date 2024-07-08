@@ -73,8 +73,8 @@
         <thead>
         <tr>
             <th>Name</th>
+            <th>Description</th>
             <th>Edit</th>
-            <th>Improve</th>
             <th>Delete</th>
         </tr>
         </thead>
@@ -83,15 +83,12 @@
         <tr th:each="department : ${departments}">
             <!-- Display department name -->
             <td th:text="${department.name}">Department Name</td>
+            <td th:text="${department.description}"></td>
             <!-- Edit link -->
+
             <td>
                 <a th:href="@{/edit-department/{id}(id=${department.id})}" class="button">Edit</a>
             </td>
-            <!-- Improve link -->
-            <td>
-                <a th:href="@{/improve-department/{id}(id=${department.id})}" class="button">Improve</a>
-            </td>
-            <!-- Delete link -->
             <td>
                 <a th:href="@{/delete-department/{id}(id=${department.id})}" class="button">Delete</a>
             </td>

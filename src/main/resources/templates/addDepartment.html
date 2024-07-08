@@ -55,7 +55,10 @@
 <form action="/save-department" th:object="${department}"  method="post">
     <label for="name">Name:</label>
     <input type="text" id="name" th:field="*{name}" name="name" placeholder="Department Name" required/>
+    <label for="Description">Description:</label>
+    <input type="text" id="Description" th:field="*{description}" description="description" placeholder="Department Description" />
     <button type="submit">Add Department</button>
+
 </form>
 </body>
 </html>
