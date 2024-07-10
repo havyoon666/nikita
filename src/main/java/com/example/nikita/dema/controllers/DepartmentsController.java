@@ -67,5 +67,11 @@ public class DepartmentsController {
         return "departments";
     }
 
+    @GetMapping  ("/departments/{id}")
+    public String showDepartment(@PathVariable String id, Model model) {
+        model.addAttribute("department", departmentsService.getDepartmentById(id));
+        return "editDepartment";
+    }
+
 
 }

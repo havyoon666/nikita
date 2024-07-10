@@ -82,7 +82,10 @@
         <!-- Iterate over each department -->
         <tr th:each="department : ${departments}">
             <!-- Display department name -->
-            <td th:text="${department.name}">Department Name</td>
+            <td>
+                <a th:href="@{/departments/{id}(id=${department.id})}" th:text="${department.name}">Department Name</a>
+            </td>
+
             <td th:text="${department.description}"></td>
             <!-- Edit link -->
 
