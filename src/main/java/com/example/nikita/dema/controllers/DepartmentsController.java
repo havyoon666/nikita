@@ -1,8 +1,9 @@
 package com.example.nikita.dema.controllers;
 
 import com.example.nikita.dema.models.Department;
+import com.example.nikita.dema.models.Employee;
 import com.example.nikita.dema.services.DepartmentsService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.nikita.dema.services.EmployeeService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,19 +17,27 @@ import java.util.List;
 @Controller
 public class DepartmentsController {
 
-    @Autowired
     private DepartmentsService departmentsService;
-
+    private EmployeeService employeeService;
 
     public DepartmentsController() {
+        this.departmentsService = new DepartmentsService();
+        this.employeeService = new EmployeeService();
     }
+
 
     @GetMapping("/")
     public String homePage(Model model) {
-//        List<Department> allDepartments = departmentsService.getAllDepartments();
-        List<Department> allDepartments = departmentsService.getAllDepartmentsFromDB();
+        List<Department> allDepartments = departmentsService.getAllDepartments();
         model.addAttribute("departments", allDepartments);
         return "departments";
+    }
+
+    @GetMapping("/show-employees")
+    public String showEmployees(Model model) {
+        List<Employee> allEmployess = employeeService.getAllEmployess();
+        model.addAttribute("employees", allEmployess);
+        return "employees";
     }
 
 

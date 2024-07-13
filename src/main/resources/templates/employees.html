@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Departments</title>
+    <title>Employees</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -62,39 +62,28 @@
 </head>
 <body>
 <header>
-    <h1>Departments</h1>
+    <h1>Employees</h1>
 </header>
 <div class="container">
-    <div class="actions">
-        <!-- Add Department button -->
-        <a th:href="@{/add-department}" class="button">Add Department</a>
-    </div>
+
     <table>
         <thead>
         <tr>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Edit</th>
-            <th>Delete</th>
+            <th>Firs tName</th>
+            <th>Last Name</th>
+
         </tr>
         </thead>
         <tbody>
         <!-- Iterate over each department -->
-        <tr th:each="department : ${departments}">
+        <tr th:each="employee : ${employees}">
             <!-- Display department name -->
-            <td>
-                <a th:href="@{/show-employees}" th:text="${department.name}">Department Name</a>
-            </td>
 
-            <td th:text="${department.description}"></td>
+            <td th:text="${employee.firstName}"></td>
+            <td th:text="${employee.lastName}"></td>
             <!-- Edit link -->
 
-            <td>
-                <a th:href="@{/edit-department/{id}(id=${department.id})}" class="button">Edit</a>
-            </td>
-            <td>
-                <a th:href="@{/delete-department/{id}(id=${department.id})}" class="button">Delete</a>
-            </td>
+
         </tr>
         </tbody>
     </table>
