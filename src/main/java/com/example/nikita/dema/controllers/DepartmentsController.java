@@ -29,7 +29,7 @@ public class DepartmentsController {
 
     @GetMapping("/")
     public String homePage(Model model) {
-        List<Department> allDepartments = departmentsService.getAllDepartmentsFromDB();
+        List<Department> allDepartments = departmentsService.getAllDepartments();
         model.addAttribute("departments", allDepartments);
         return "departments";
     }

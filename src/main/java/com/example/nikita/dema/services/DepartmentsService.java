@@ -1,6 +1,6 @@
 package com.example.nikita.dema.services;
 
-import com.example.nikita.dema.dao.DepartmentsRepository;
+//import com.example.nikita.dema.dao.DepartmentsRepository;
 import com.example.nikita.dema.models.Department;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,8 +10,8 @@ import java.util.List;
 
 @Service
 public class DepartmentsService {
-    @Autowired
-    private DepartmentsRepository departmentsRepository;
+//    @Autowired
+//    private DepartmentsRepository departmentsRepository;
     private List<Department> departments = new ArrayList<>();
 
     public DepartmentsService() {
@@ -47,9 +47,9 @@ public class DepartmentsService {
 //                .findFirst().orElse(null);
     }
 
-    public List<Department> getAllDepartmentsFromDB() {
-        return departmentsRepository.selectAllDepartments();
-    }
+//    public List<Department> getAllDepartmentsFromDB() {
+//        return departmentsRepository.selectAllDepartments();
+//    }
 
     public void updateDepartment(Department department) {
         for (Department departmentInList : departments) {
