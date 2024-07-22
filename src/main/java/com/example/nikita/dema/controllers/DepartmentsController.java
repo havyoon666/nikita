@@ -8,10 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -34,9 +31,9 @@ public class DepartmentsController {
         return "departments";
     }
 
-    @GetMapping("/show-employees")
-    public String showEmployees(Model model) {
-        List<Employee> allEmployess = employeeService.getAllEmployess();
+    @GetMapping("/show-employees/{depId}")
+    public String showEmployees(@PathVariable Integer depId, Model model) {
+        List<Employee> allEmployess = employeeService.getEmployeesByDepartment(depId);
         model.addAttribute("employees", allEmployess);
         return "employees";
     }
@@ -53,6 +50,13 @@ public class DepartmentsController {
         model.addAttribute("department", new Department());
         return "addDepartment";
     }
+    @GetMapping("/add-employee")
+    public String goToAddEmployee(Model model){
+        Employee employee = new Employee();
+        employee.setDepartmentId(1);
+        model.addAttribute("employee", employee);
+        return "addEmployee";
+    }
 
 
     @PostMapping("/save-department")
@@ -66,6 +70,14 @@ public class DepartmentsController {
 
 
         }
+
+        List<Department> allDepartments = departmentsService.getAllDepartments();
+        model.addAttribute("departments", allDepartments);
+        return "departments";
+    }
+    @PostMapping("/save-employee")
+    public String updateDepartment(@ModelAttribute Employee employee, Model model) {
+       employeeService.addEmployee(employee);
 
         List<Department> allDepartments = departmentsService.getAllDepartments();
         model.addAttribute("departments", allDepartments);
