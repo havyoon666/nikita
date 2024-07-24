@@ -23,7 +23,11 @@ public class EmployeeService {
         employeeMap.put(2, List.of(new Employee(3, "Invoker", "GERAs", "info3", 2)));
     }
     public void addEmployee(Employee employee) {
-        employeeMap.get(employee.getDepartmentId()).add(employee);
+        Integer departmentId = employee.getDepartmentId();
+        List<Employee> employeeList = employeeMap.get(departmentId);
+        int maxId = employeeList.stream().map(employee1 -> employee1.getId()).max(Integer::compareTo).get();
+        employee.setId(maxId + 1);
+        employeeList.add(employee);
     }
 
 

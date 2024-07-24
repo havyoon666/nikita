@@ -32,7 +32,7 @@ public class DepartmentsService {
     }
 
     public List<Department> getAllDepartments() {
-        return departmentsRepository.selectAllDepartments();
+        return departments;
     }
 
     public Department getDepartmentById(String id) {
