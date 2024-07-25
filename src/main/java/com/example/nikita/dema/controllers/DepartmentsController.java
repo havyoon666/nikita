@@ -5,7 +5,6 @@ import com.example.nikita.dema.models.Employee;
 import com.example.nikita.dema.services.DepartmentsService;
 import com.example.nikita.dema.services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -45,6 +44,7 @@ public class DepartmentsController {
         return "editDepartment";
 
     }
+
     @GetMapping("/add-department")
     public String goToAddDepartment(Model model) {
         model.addAttribute("department", new Department());
@@ -60,7 +60,7 @@ public class DepartmentsController {
 
 
     @PostMapping("/save-department")
-    public String updateDepartment(Department department, Model model) {
+    public String saveEmpployee(Department department, Model model) {
         if (department.getId()==0){
             departmentsService.addDepartment(department);
 
@@ -75,20 +75,41 @@ public class DepartmentsController {
         model.addAttribute("departments", allDepartments);
         return "departments";
     }
+
+    @GetMapping("/edit-employee/{id}")
+    public String goToEditEmployee(@PathVariable Integer id, Model model) {
+        model.addAttribute("employee", employeeService.getEmployeeById(id));
+        return "editEmployee";
+
+    }
     @PostMapping("/save-employee")
-    public String updateDepartment(@ModelAttribute Employee employee, Model model) {
-       employeeService.addEmployee(employee);
+    public String updateEmployee(Employee employee, Model model) {
+        if (employee.getId()==0){
+           employeeService.addEmployee(employee);
+
+        }
+        else{
+           employeeService.updateEmployee(employee);
+
+
+        }
 
         List<Department> allDepartments = departmentsService.getAllDepartments();
         model.addAttribute("departments", allDepartments);
         return "departments";
     }
-
-    @GetMapping  ("/delete-department/{id}")
+        @GetMapping  ("/delete-department/{id}")
     public String deleteDepartment(@PathVariable int id, Model model) {
         departmentsService.deleteDepartment(id);
         List<Department> allDepartments = departmentsService.getAllDepartments();
         model.addAttribute("departments", allDepartments);
+        return "departments";
+    }
+    @GetMapping  ("/delete-employee/{id}")
+    public String deleteEmployee(@PathVariable int id, Model model) {
+       employeeService.deleteEmployee(id);
+        List<Department> allDepartments = departmentsService.getAllDepartments();
+        model.addAttribute("employee", allDepartments);
         return "departments";
     }
 

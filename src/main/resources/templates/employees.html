@@ -86,11 +86,14 @@
 
             <td th:text="${employee.firstName}"></td>
             <td th:text="${employee.lastName}"></td>
-            <td th:text="${employee.getinfo()}"></td>
+            <td th:text="${employee.info}"></td>
             <td>
             <a th:href="@{/edit-employee/{id}(id=${employee.id})}" class="button">Edit</a>
             <!-- Edit link -->
                 </td>
+            <td>
+                <a th:href="@{/delete-employee/{id}(id=${employee.id})}" class="button">Delete</a>
+            </td>
 
         </tr>
         </tbody>

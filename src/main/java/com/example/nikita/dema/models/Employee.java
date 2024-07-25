@@ -40,8 +40,14 @@ public class Employee {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-    public String getinfo(){return info;}
-    public void setInfo(String info){this.info = info;}
+
+    public String getInfo() {
+        return info;
+    }
+
+    public void setInfo(String info) {
+        this.info = info;
+    }
 
     public Integer getDepartmentId() {
         return departmentId;

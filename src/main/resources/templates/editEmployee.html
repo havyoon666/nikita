@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Employee</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 50%;
+            margin: 0 auto;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 10px;
+        }
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-top: 10px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+<h2>Edit Employee</h2>
+<form action="/save-employee" method="post" th:object="${employee}">
+    <!-- Hidden field for department ID, assuming 'id' is a property of 'Department' class -->
+    <input type="hidden" th:field="*{departmentId}"/>
+    <input type="hidden" th:field="*{id}"/>
+
+    <label for="firstName">First name:</label>
+    <input type="text" id="firstName" th:field="*{firstName}" placeholder="Employee First name" required/>
+    <label for="lastName">Last name:</label>
+    <input type="text" id="lastName" th:field="*{lastName}" placeholder="Employee Last name" required/>
+    <label for="info">Last name:</label>
+    <input type="text" id="info" th:field="*{info}" placeholder="Employee Info" required/>
+
+    <button type="submit">Save Changes</button>
+</form>
+</body>
+</html>
