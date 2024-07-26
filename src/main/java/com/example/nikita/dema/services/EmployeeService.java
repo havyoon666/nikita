@@ -17,15 +17,28 @@ public class EmployeeService {
         employeeList.add(new Employee(2, "Nikita", "Bilyk", "info2", 1));
 
         employeeMap.put(1, employeeList);
-        employeeMap.put(2, List.of(new Employee(3, "Invoker", "GERAs", "info3", 2)));
+        employeeMap.put(2, Arrays.asList(new Employee(3, "Invoker", "GERAs", "info3", 2)));
     }
     public void addEmployee(Employee employee) {
         Integer departmentId = employee.getDepartmentId();
         List<Employee> employeeList = employeeMap.get(departmentId);
-        int maxId = employeeList.stream().map(employee1 -> employee1.getId()).max(Integer::compareTo).get();
+
+        if (employeeList == null) {
+            employeeList = new ArrayList<>(); // Initialize the list if it does not exist
+            employeeMap.put(departmentId, employeeList);
+        } else if (!(employeeList instanceof ArrayList)) {
+            employeeList = new ArrayList<>(employeeList); // Ensure the list is modifiable
+            employeeMap.put(departmentId, employeeList);
+        }
+
+        int maxId = employeeList.stream()
+                .map(Employee::getId)
+                .max(Integer::compareTo)
+                .orElse(0); // Handle empty list case
         employee.setId(maxId + 1);
         employeeList.add(employee);
     }
+
     public Employee getEmployeeById(Integer id) {
         for (Map.Entry<Integer, List<Employee>> entry : employeeMap.entrySet()) {
             List<Employee> employees = entry.getValue();
@@ -75,10 +88,15 @@ public class EmployeeService {
     public void deleteEmployee(int id) {
         for (Map.Entry<Integer, List<Employee>> entry : employeeMap.entrySet()) {
             List<Employee> employees = entry.getValue();
-            employees.removeIf(employee -> employee.getId() == id);
+            Iterator<Employee> iterator = employees.iterator();
+            while (iterator.hasNext()) {
+                if (iterator.next().getId() == id) {
+                    iterator.remove();
+                }
+            }
         }
-
     }
+
 //
 //    public Employee getEmployeeById(String id) {
 //        for (Employee employeeInList : employees) {

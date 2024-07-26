@@ -5,6 +5,7 @@ import com.example.nikita.dema.models.Employee;
 import com.example.nikita.dema.services.DepartmentsService;
 import com.example.nikita.dema.services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.relational.core.sql.In;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -34,6 +35,7 @@ public class DepartmentsController {
     public String showEmployees(@PathVariable Integer depId, Model model) {
         List<Employee> allEmployess = employeeService.getEmployeesByDepartment(depId);
         model.addAttribute("employees", allEmployess);
+        model.addAttribute("departmentId", depId);
         return "employees";
     }
 
@@ -50,10 +52,10 @@ public class DepartmentsController {
         model.addAttribute("department", new Department());
         return "addDepartment";
     }
-    @GetMapping("/add-employee")
-    public String goToAddEmployee(Model model){
+    @GetMapping("/add-employee/{departmentId}")
+    public String goToAddEmployee(@PathVariable Integer departmentId, Model model){
         Employee employee = new Employee();
-        employee.setDepartmentId(1);
+        employee.setDepartmentId(departmentId);
         model.addAttribute("employee", employee);
         return "addEmployee";
     }
@@ -109,7 +111,7 @@ public class DepartmentsController {
     public String deleteEmployee(@PathVariable int id, Model model) {
        employeeService.deleteEmployee(id);
         List<Department> allDepartments = departmentsService.getAllDepartments();
-        model.addAttribute("employee", allDepartments);
+        model.addAttribute("departments", allDepartments);
         return "departments";
     }
 

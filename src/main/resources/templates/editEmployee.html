@@ -55,7 +55,7 @@
 <form action="/save-employee" method="post" th:object="${employee}">
     <!-- Hidden field for department ID, assuming 'id' is a property of 'Department' class -->
     <input type="hidden" th:field="*{departmentId}"/>
-    <input type="hidden" th:field="*{id}"/>
+    <input type="hidden" th:field="${employee.id}"/>
 
     <label for="firstName">First name:</label>
     <input type="text" id="firstName" th:field="*{firstName}" placeholder="Employee First name" required/>
