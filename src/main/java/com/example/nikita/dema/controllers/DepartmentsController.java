@@ -96,9 +96,10 @@ public class DepartmentsController {
 
         }
 
-        List<Department> allDepartments = departmentsService.getAllDepartments();
-        model.addAttribute("departments", allDepartments);
-        return "departments";
+        List<Employee> allEmployees = employeeService.getEmployeesByDepartment(employee.getDepartmentId());
+        model.addAttribute("departmentId", employee.getDepartmentId() );
+        model.addAttribute("employees", allEmployees);
+        return "employees";
     }
         @GetMapping  ("/delete-department/{id}")
     public String deleteDepartment(@PathVariable int id, Model model) {
@@ -109,10 +110,11 @@ public class DepartmentsController {
     }
     @GetMapping  ("/delete-employee/{id}")
     public String deleteEmployee(@PathVariable int id, Model model) {
+        Employee employee = employeeService.getEmployeeById(id);
        employeeService.deleteEmployee(id);
-        List<Department> allDepartments = departmentsService.getAllDepartments();
-        model.addAttribute("departments", allDepartments);
-        return "departments";
+        List<Employee> allEmployees = employeeService.getEmployeesByDepartment(employee.getDepartmentId());
+        model.addAttribute("employees", allEmployees);
+        return "employees";
     }
 
     @GetMapping  ("/departments/{id}")

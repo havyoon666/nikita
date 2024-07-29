@@ -88,6 +88,13 @@ public class EmployeeService {
     public void deleteEmployee(int id) {
         for (Map.Entry<Integer, List<Employee>> entry : employeeMap.entrySet()) {
             List<Employee> employees = entry.getValue();
+
+            // Check if the list is modifiable, if not, create a modifiable copy
+            if (!(employees instanceof ArrayList)) {
+                employees = new ArrayList<>(employees);
+                entry.setValue(employees);
+            }
+
             Iterator<Employee> iterator = employees.iterator();
             while (iterator.hasNext()) {
                 if (iterator.next().getId() == id) {
