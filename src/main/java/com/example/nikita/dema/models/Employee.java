@@ -6,12 +6,32 @@ public class Employee {
     private String lastName;
     private String info;
     private Integer departmentId;
-    public Employee(int id, String firstName, String lastName, String info, Integer departmentId) {
+    private Integer age;
+    private Integer salary;
+
+    public Integer getSalary() {
+        return salary;
+    }
+
+    public void setSalary(Integer salary) {
+        this.salary = salary;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public Employee(int id, String firstName, String lastName, String info, Integer departmentId,Integer age) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.info = info;
         this.departmentId = departmentId;
+        this.age = age;
     }
     public Employee(){
 

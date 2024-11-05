@@ -13,11 +13,11 @@ public class EmployeeService {
 
     public EmployeeService() {
         List<Employee> employeeList = new ArrayList<>();
-        employeeList.add(new Employee(1, "Budda", "Ragna", "info1", 1));
-        employeeList.add(new Employee(2, "Nikita", "Bilyk", "info2", 1));
+        employeeList.add(new Employee(1, "Budda", "Ragna", "info1", 1,12));
+        employeeList.add(new Employee(2, "Nikita", "Bilyk", "info2", 1,43));
 
         employeeMap.put(1, employeeList);
-        employeeMap.put(2, Arrays.asList(new Employee(3, "Invoker", "GERAs", "info3", 2)));
+        employeeMap.put(2, Arrays.asList(new Employee(3, "Invoker", "GERAs", "info3", 2,5)));
     }
     public void addEmployee(Employee employee) {
         Integer departmentId = employee.getDepartmentId();
